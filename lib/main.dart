@@ -3,8 +3,6 @@ import 'package:flutter/services.dart';
 import 'package:werk/Screens/LoginScreen.dart';
 import 'package:werk/Screens/WelcomeScreen.dart';
 
-import 'package:animated_text_kit/animated_text_kit.dart';
-
 Future main() async {
   SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
       statusBarBrightness: Brightness.light,
