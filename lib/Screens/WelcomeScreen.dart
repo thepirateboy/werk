@@ -13,7 +13,6 @@ class WelcomeScreen extends StatelessWidget {
           Container(
             height: 250,
             width: double.infinity,
-            // color: Colors.green[400],
             child: Center(
               child: Text(
                 "Welcome",
