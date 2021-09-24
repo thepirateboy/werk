@@ -1,11 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:werk/Screens/LoginScreen.dart';
 import 'package:werk/Screens/WelcomeScreen.dart';
 
-void main() {
+import 'package:animated_text_kit/animated_text_kit.dart';
+
+Future main() async {
   SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
       statusBarBrightness: Brightness.light,
       statusBarIconBrightness: Brightness.light));
+  WidgetsFlutterBinding.ensureInitialized();
+  // await Firebase.initializeApp();
   runApp(WerkApp());
 }
 
@@ -15,15 +20,12 @@ class WerkApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme: ThemeData(
-          // appBarTheme: AppBarTheme(
-          //   // backwardsCompatibility: false, // 1
-          //   systemOverlayStyle: SystemUiOverlayStyle.dark, // 2
-          // ),
-          ),
+      // theme: ThemeData(),
+
       initialRoute: WelcomeScreen.id,
       routes: {
         WelcomeScreen.id: (context) => WelcomeScreen(),
+        LoginScreen.id: (context) => LoginScreen(),
       },
     );
   }
