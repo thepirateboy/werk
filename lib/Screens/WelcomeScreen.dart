@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:werk/Screens/LoginScreen.dart';
+import 'package:werk/Screens/RegistrationScreen.dart';
 
 class WelcomeScreen extends StatefulWidget {
   // const WelcomePAge({Key? key}) : super(key: key);
@@ -56,7 +57,9 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                     borderRadius: BorderRadius.all(Radius.circular(10)),
                     color: Color(0xff368FFF),
                     child: MaterialButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.pushNamed(context, RegistrationScreen.id);
+                      },
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [

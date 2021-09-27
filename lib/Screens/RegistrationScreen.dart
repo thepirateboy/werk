@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:werk/Items/LoginItems.dart';
 
-class LoginScreen extends StatefulWidget {
-  static final String id = "LoginScreen";
+class RegistrationScreen extends StatefulWidget {
+  static final String id = "RegistrationScreen";
   @override
-  _LoginScreenState createState() => _LoginScreenState();
+  _RegistrationScreenState createState() => _RegistrationScreenState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
+class _RegistrationScreenState extends State<RegistrationScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -37,7 +37,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       padding: EdgeInsets.only(top: 100),
                       child: Center(
                           child: Text(
-                        "Welcome Back!",
+                        "Create an account",
                         style: TextStyle(
                             // color: Colors.white,
                             fontSize: 40,
@@ -48,26 +48,24 @@ class _LoginScreenState extends State<LoginScreen> {
                     //   height: 50,
                     // ),
                     Image.asset(
-                      "lib/img/hugo-security-service.png",
+                      "lib/img/hugo-success-1.png",
                       height: 250,
                     ),
                     LoginTextFieldContainer(
-                      theChild: TextField(
-                        keyboardType: TextInputType.emailAddress,
-                        decoration: InputDecoration(
-                          icon: Icon(Icons.mail),
-                          fillColor: Colors.black,
-                          hintText: 'Enter your email',
-                          border: InputBorder.none,
-                        ),
+                        theChild: TextField(
+                      keyboardType: TextInputType.emailAddress,
+                      decoration: InputDecoration(
+                        icon: Icon(Icons.mail),
+                        fillColor: Colors.black,
+                        hintText: 'Enter your email',
+                        border: InputBorder.none,
                       ),
-                    ),
+                    )),
                     SizedBox(
                       height: 20,
                     ),
                     LoginTextFieldContainer(
                       theChild: TextField(
-                        onChanged: (value) {},
                         obscureText: true,
                         // textAlign: TextAlign.center,
                         decoration: InputDecoration(
@@ -82,10 +80,8 @@ class _LoginScreenState extends State<LoginScreen> {
                       height: 25,
                     ),
                     LoginButton(
-                      theOnpressed: () {
-                        print("gggg");
-                      },
-                      theText: 'Login',
+                      theOnpressed: () {},
+                      theText: 'Register',
                     ),
                     SizedBox(
                       height: 20,

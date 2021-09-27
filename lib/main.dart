@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:werk/Screens/LoginScreen.dart';
+import 'package:werk/Screens/RegistrationScreen.dart';
 import 'package:werk/Screens/WelcomeScreen.dart';
 
 Future main() async {
@@ -24,6 +25,7 @@ class WerkApp extends StatelessWidget {
       routes: {
         WelcomeScreen.id: (context) => WelcomeScreen(),
         LoginScreen.id: (context) => LoginScreen(),
+        RegistrationScreen.id: (context) => RegistrationScreen(),
       },
     );
   }
