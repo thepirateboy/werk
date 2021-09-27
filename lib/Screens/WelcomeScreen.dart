@@ -30,7 +30,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
               ),
             ),
             decoration: BoxDecoration(
-              color: Color(0xffDC4624),
+              color: Color(0xff368FFF),
               borderRadius: BorderRadius.only(
                   bottomLeft: Radius.circular(35),
                   bottomRight: Radius.circular(35)),
@@ -40,7 +40,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
             padding: EdgeInsets.only(top: 60, bottom: 50),
             child: SizedBox(
               height: 300,
-              child: Image.asset("lib/img/3d-flame-workflow-1.png"),
+              child: Image.asset("lib/img/hugo-83.png"),
             ),
           ),
           Padding(
@@ -54,7 +54,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                   child: Material(
                     // elevation: 5,
                     borderRadius: BorderRadius.all(Radius.circular(10)),
-                    color: Color(0xffDC4624),
+                    color: Color(0xff368FFF),
                     child: MaterialButton(
                       onPressed: () {},
                       child: Row(

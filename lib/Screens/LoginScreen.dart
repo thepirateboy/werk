@@ -1,3 +1,5 @@
+import 'dart:typed_data';
+
 import 'package:flutter/material.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -16,20 +18,19 @@ class _LoginScreenState extends State<LoginScreen> {
       height: MediaQuery.of(context).size.height,
       child: Stack(
         children: [
-          Positioned(
-            top: 0,
-            right: 0,
-            child: Image.asset(
-              "lib/img/blob-haikei.png",
-              width: 150,
-            ),
-          ),
+          // Positioned(
+          //   top: 0,
+          //   right: 0,
+          //   child: Image.asset(
+          //     "lib/img/blob-haikei.png",
+          //     width: 150,
+          //   ),
+          // ),
           Positioned(
             bottom: 0,
-            right: 0,
             child: Image.asset(
-              "lib/img/blob-haikei.png",
-              width: 150,
+              "lib/img/44.png",
+              width: 250,
             ),
           ),
           SingleChildScrollView(
@@ -42,7 +43,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   // mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Padding(
-                      padding: EdgeInsets.only(top: 150),
+                      padding: EdgeInsets.only(top: 100),
                       child: Center(
                           child: Text(
                         "Welcome Back!",
@@ -52,22 +53,27 @@ class _LoginScreenState extends State<LoginScreen> {
                             fontWeight: FontWeight.bold),
                       )),
                     ),
-                    SizedBox(
-                      height: 50,
+                    // SizedBox(
+                    //   height: 50,
+                    // ),
+                    Image.asset(
+                      "lib/img/hugo-security-service.png",
+                      height: 250,
                     ),
-                    TextField(
-                      textAlign: TextAlign.center,
-                      decoration: InputDecoration(
-                        hintText: 'Enter your email',
-                        enabledBorder: OutlineInputBorder(
-                          borderSide:
-                              BorderSide(color: Colors.black, width: 1.0),
-                          borderRadius: BorderRadius.all(Radius.circular(32.0)),
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                          borderSide:
-                              BorderSide(color: Colors.blueAccent, width: 2.0),
-                          borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                    Container(
+                      padding:
+                          EdgeInsets.symmetric(vertical: 5, horizontal: 25),
+                      decoration: BoxDecoration(
+                        color: Color(0xffB1E3FF),
+                        borderRadius: BorderRadius.all(Radius.circular(32.0)),
+                      ),
+                      child: TextField(
+                        keyboardType: TextInputType.emailAddress,
+                        decoration: InputDecoration(
+                          icon: Icon(Icons.mail),
+                          fillColor: Colors.black,
+                          hintText: 'Enter your email',
+                          border: InputBorder.none,
                         ),
                       ),
                     ),
@@ -75,31 +81,20 @@ class _LoginScreenState extends State<LoginScreen> {
                       height: 20,
                     ),
                     Container(
-                      padding: EdgeInsets.symmetric(vertical: 10),
+                      padding:
+                          EdgeInsets.symmetric(vertical: 5, horizontal: 25),
                       decoration: BoxDecoration(
-                        color: Color(0xffEAE0F9),
+                        color: Color(0xffB1E3FF),
                         borderRadius: BorderRadius.all(Radius.circular(32.0)),
                       ),
                       child: TextField(
-                        textAlign: TextAlign.center,
+                        obscureText: true,
+                        // textAlign: TextAlign.center,
                         decoration: InputDecoration(
+                          icon: Icon(Icons.lock),
                           fillColor: Colors.black,
-                          hintText: 'Enter your email',
+                          hintText: 'Enter your password',
                           border: InputBorder.none,
-                          // border: OutlineInputBorder(
-                          //   borderSide: BorderSide(color: Colors.red, width: 2.0),
-                          //   borderRadius: BorderRadius.all(Radius.circular(32.0)),
-                          // ),
-                          // enabledBorder: OutlineInputBorder(
-                          //   borderSide:
-                          //       BorderSide(color: Colors.black, width: 1.0),
-                          //   borderRadius: BorderRadius.all(Radius.circular(32.0)),
-                          // ),
-                          // focusedBorder: OutlineInputBorder(
-                          //   borderSide:
-                          //       BorderSide(color: Colors.blueAccent, width: 2.0),
-                          //   borderRadius: BorderRadius.all(Radius.circular(10.0)),
-                          // ),
                         ),
                       ),
                     ),
@@ -107,9 +102,10 @@ class _LoginScreenState extends State<LoginScreen> {
                       height: 25,
                     ),
                     Material(
-                      color: Color(0xffDC4624),
-                      borderRadius: BorderRadius.all(Radius.circular(20)),
+                      color: Color(0xff368FFF),
+                      borderRadius: BorderRadius.all(Radius.circular(30)),
                       child: MaterialButton(
+                          padding: EdgeInsets.symmetric(vertical: 15),
                           child: Text(
                             "Login",
                             style: TextStyle(
@@ -119,36 +115,9 @@ class _LoginScreenState extends State<LoginScreen> {
                           ),
                           onPressed: () {}),
                     ),
-                    // SizedBox(
-                    //   height: 10,
-                    // ),
-                    // Expanded(
-                    //   child: SizedBox(
-                    //     height: 0,
-                    //   ),
-                    // ),
-                    // Stack(
-                    //   children: [
-                    //     Container(
-                    //       child: Image(
-                    //         image: AssetImage("lib/img/layered-waves-haikei.png"),
-                    //       ),
-                    //     ),
-                    //     Positioned(
-                    //       left: 50,
-                    //       child: Container(
-                    //         child: Image.asset("lib/img/3d-flame-19.png"),
-                    //         height: 300,
-                    //         width: double.infinity,
-                    //       ),
-                    //     ),
-                    //   ],
-                    // ),
-                    // Flexible(
-                    //   child: Padding(
-                    //     padding: const EdgeInsets.only(left: 55, top: 100),
-                    //   ),
-                    // )
+                    SizedBox(
+                      height: 20,
+                    ),
                   ],
                 ),
               ),
