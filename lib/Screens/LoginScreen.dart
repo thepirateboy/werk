@@ -1,13 +1,20 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:werk/Items/LoginItems.dart';
+import 'package:werk/Screens/ChatScreen.dart';
 
 class LoginScreen extends StatefulWidget {
   static final String id = "LoginScreen";
+
   @override
   _LoginScreenState createState() => _LoginScreenState();
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+  late String email;
+  late String password;
+  final _auth = FirebaseAuth.instance;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -29,9 +36,7 @@ class _LoginScreenState extends State<LoginScreen> {
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 30),
                 child: Column(
-                  // mainAxisAlignment: MainAxisAlignment.end,
                   crossAxisAlignment: CrossAxisAlignment.stretch,
-                  // mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Padding(
                       padding: EdgeInsets.only(top: 100),
@@ -44,9 +49,6 @@ class _LoginScreenState extends State<LoginScreen> {
                             fontWeight: FontWeight.bold),
                       )),
                     ),
-                    // SizedBox(
-                    //   height: 50,
-                    // ),
                     Image.asset(
                       "lib/img/hugo-security-service.png",
                       height: 250,
@@ -60,6 +62,9 @@ class _LoginScreenState extends State<LoginScreen> {
                           hintText: 'Enter your email',
                           border: InputBorder.none,
                         ),
+                        onChanged: (value) {
+                          email = value;
+                        },
                       ),
                     ),
                     SizedBox(
@@ -67,23 +72,33 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                     LoginTextFieldContainer(
                       theChild: TextField(
-                        onChanged: (value) {},
                         obscureText: true,
-                        // textAlign: TextAlign.center,
                         decoration: InputDecoration(
                           icon: Icon(Icons.lock),
                           fillColor: Colors.black,
                           hintText: 'Enter your password',
                           border: InputBorder.none,
                         ),
+                        onChanged: (value) {
+                          password = value;
+                        },
                       ),
                     ),
                     SizedBox(
                       height: 25,
                     ),
                     LoginButton(
-                      theOnpressed: () {
-                        print("gggg");
+                      theOnPressed: () async {
+                        try {
+                          final LoggedInUser =
+                              await _auth.signInWithEmailAndPassword(
+                                  email: email, password: password);
+                          if (LoggedInUser != null) {
+                            Navigator.pushNamed(context, ChatScreen.id);
+                          }
+                        } catch (e) {
+                          print(e);
+                        }
                       },
                       theText: 'Login',
                     ),

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:werk/Items/LoginItems.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class RegistrationScreen extends StatefulWidget {
   static final String id = "RegistrationScreen";
@@ -8,6 +10,10 @@ class RegistrationScreen extends StatefulWidget {
 }
 
 class _RegistrationScreenState extends State<RegistrationScreen> {
+  final _auth = FirebaseAuth.instance;
+  late String email;
+  late String password;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -44,9 +50,6 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                             fontWeight: FontWeight.bold),
                       )),
                     ),
-                    // SizedBox(
-                    //   height: 50,
-                    // ),
                     Image.asset(
                       "lib/img/hugo-success-1.png",
                       height: 250,
@@ -60,6 +63,9 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                         hintText: 'Enter your email',
                         border: InputBorder.none,
                       ),
+                      onChanged: (value) {
+                        email = value;
+                      },
                     )),
                     SizedBox(
                       height: 20,
@@ -74,13 +80,25 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                           hintText: 'Enter your password',
                           border: InputBorder.none,
                         ),
+                        onChanged: (value) {
+                          password = value;
+                        },
                       ),
                     ),
                     SizedBox(
                       height: 25,
                     ),
                     LoginButton(
-                      theOnpressed: () {},
+                      theOnPressed: () async {
+                        print("Email = $email \nPassword = $password");
+                        try {
+                          final newUser =
+                              await _auth.createUserWithEmailAndPassword(
+                                  email: email, password: password);
+                        } catch (e) {
+                          print(e);
+                        }
+                      },
                       theText: 'Register',
                     ),
                     SizedBox(

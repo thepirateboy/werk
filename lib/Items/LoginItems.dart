@@ -1,10 +1,6 @@
 import 'package:flutter/material.dart';
 
 class LoginTextFieldContainer extends StatelessWidget {
-  // const LoginTextFieldContainer({
-  //   Key? key,
-  // }) : super(key: key);
-
   final Widget theChild;
 
   LoginTextFieldContainer({required this.theChild});
@@ -23,10 +19,10 @@ class LoginTextFieldContainer extends StatelessWidget {
 }
 
 class LoginButton extends StatelessWidget {
-  final VoidCallback theOnpressed;
+  final VoidCallback theOnPressed;
   final String theText;
 
-  LoginButton({required this.theOnpressed, required this.theText});
+  LoginButton({required this.theOnPressed, required this.theText});
 
   @override
   Widget build(BuildContext context) {
@@ -40,7 +36,7 @@ class LoginButton extends StatelessWidget {
           style: TextStyle(
               color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold),
         ),
-        onPressed: theOnpressed,
+        onPressed: theOnPressed,
       ),
     );
   }
