@@ -1,6 +1,9 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:werk/Screens/ChatScreen.dart';
 import 'package:werk/Screens/LoginScreen.dart';
+import 'package:werk/Screens/RegistrationScreen.dart';
 import 'package:werk/Screens/WelcomeScreen.dart';
 
 Future main() async {
@@ -8,7 +11,7 @@ Future main() async {
       statusBarBrightness: Brightness.light,
       statusBarIconBrightness: Brightness.light));
   WidgetsFlutterBinding.ensureInitialized();
-  // await Firebase.initializeApp();
+  await Firebase.initializeApp();
   runApp(WerkApp());
 }
 
@@ -24,6 +27,8 @@ class WerkApp extends StatelessWidget {
       routes: {
         WelcomeScreen.id: (context) => WelcomeScreen(),
         LoginScreen.id: (context) => LoginScreen(),
+        RegistrationScreen.id: (context) => RegistrationScreen(),
+        ChatScreen.id: (context) => ChatScreen(),
       },
     );
   }
