@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:werk/Screens/ChatListScreen.dart';
 
 final _firestore = FirebaseFirestore.instance;
 late User loggedInUser;
@@ -60,7 +61,10 @@ class _ChatScreenState extends State<ChatScreen> {
         // leading: Text("ss"),
         actions: [
           IconButton(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => ChatListScreen()));
+            },
             icon: Icon(FontAwesomeIcons.bars),
           ),
           IconButton(
