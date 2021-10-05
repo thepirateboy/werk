@@ -13,6 +13,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
   final _auth = FirebaseAuth.instance;
   late String email;
   late String password;
+  bool loadingIndicator = false;
 
   @override
   Widget build(BuildContext context) {
@@ -54,6 +55,10 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                       "lib/img/hugo-success-1.png",
                       height: 250,
                     ),
+                    Visibility(
+                      child: CircularProgressIndicator.adaptive(),
+                      visible: loadingIndicator,
+                    ),
                     LoginTextFieldContainer(
                         theChild: TextField(
                       keyboardType: TextInputType.emailAddress,
@@ -90,6 +95,9 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                     ),
                     LoginButton(
                       theOnPressed: () async {
+                        setState(() {
+                          loadingIndicator = true;
+                        });
                         print("Email = $email \nPassword = $password");
                         try {
                           final newUser =
@@ -98,6 +106,9 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                         } catch (e) {
                           print(e);
                         }
+                        setState(() {
+                          loadingIndicator = false;
+                        });
                       },
                       theText: 'Register',
                     ),
