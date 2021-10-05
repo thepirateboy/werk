@@ -44,104 +44,155 @@ class _ChatScreenState extends State<ChatScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color(0xffECEEFB),
-      appBar: AppBar(
-        // centerTitle: true,
-        backgroundColor: Color(0xffA077E0),
-        title: Row(
-          children: [
-            Icon(FontAwesomeIcons.home),
-            SizedBox(width: 20),
-            Text(
-              "Lobby",
-              style:
-                  TextStyle(color: Colors.white, fontWeight: FontWeight.w900),
-            ),
-          ],
-        ),
-        // leading: Text("ss"),
-        actions: [
-          IconButton(
-            onPressed: () {
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => ChatListScreen()));
-            },
-            icon: Icon(FontAwesomeIcons.bars),
-          ),
-          IconButton(
-            onPressed: () {
-              Navigator.pop(context);
-              _auth.signOut();
-            },
-            icon: Icon(FontAwesomeIcons.signOutAlt),
-          ),
-        ],
-      ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        crossAxisAlignment: CrossAxisAlignment.stretch,
+      // appBar: AppBar(
+      //   // centerTitle: true,
+      //   backgroundColor: Color(0xffE8C7DE),
+      //   shape: RoundedRectangleBorder(
+      //       borderRadius: BorderRadius.all(Radius.circular(40))),
+      //   title: Row(
+      //     children: [
+      //       Icon(FontAwesomeIcons.home),
+      //       SizedBox(width: 20),
+      //       Text(
+      //         "Lobby",
+      //         style:
+      //             TextStyle(color: Colors.white, fontWeight: FontWeight.w900),
+      //       ),
+      //     ],
+      //   ),
+      //   // leading: Text("ss"),
+      //   actions: [
+      //     IconButton(
+      //       onPressed: () {
+      //         Navigator.push(context,
+      //             MaterialPageRoute(builder: (context) => ChatListScreen()));
+      //       },
+      //       icon: Icon(FontAwesomeIcons.bars),
+      //     ),
+      //     IconButton(
+      //       onPressed: () {
+      //         Navigator.pop(context);
+      //         _auth.signOut();
+      //       },
+      //       icon: Icon(FontAwesomeIcons.signOutAlt),
+      //     ),
+      //   ],
+      // ),
+      body: Stack(
+        // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        // crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          Text(
-            "data",
-            style: GoogleFonts.bebasNeue(),
+          Container(
+            color: Color(0xff8EC957),
+            // height: 200,
+            width: MediaQuery.of(context).size.width,
           ),
-          MessageStream(),
-          Padding(
-            padding: const EdgeInsets.only(bottom: 35, left: 25, right: 25),
-            child: Container(
-              padding: EdgeInsets.only(left: 15),
-              height: 50,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.all(Radius.circular(20)),
-                color: Colors.white,
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.grey.withOpacity(0.5),
-                    offset: Offset(0, 0),
-                    spreadRadius: 3,
-                    blurRadius: 7,
-                  )
-                ],
+          Positioned(
+            child: SizedBox(
+              height: 100,
+              width: MediaQuery.of(context).size.width,
+              child: Center(
+                child: Text(
+                  "IT Department",
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 40,
+                    fontWeight: FontWeight.w700,
+                  ),
+                ),
               ),
-              child: Row(
-                // mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Icon(
-                    Icons.attach_file,
-                    color: Colors.grey,
-                  ),
-                  Container(
-                    padding: EdgeInsets.symmetric(vertical: 7, horizontal: 7),
-                    // margin: EdgeInsets.symmetric(horizontal: 15, vertical: 5),
-                    margin: EdgeInsets.fromLTRB(15, 5, 7, 5),
-                    width: 250,
-                    child: TextField(
-                      controller: messageBoxController,
-                      decoration: InputDecoration(
-                        border: InputBorder.none,
-                      ),
-                      onChanged: (value) {
-                        messageText = value;
-                      },
+            ),
+            top: 60,
+          ),
+          Positioned(
+            right: 10,
+            top: 45,
+            child: IconButton(
+              onPressed: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => ChatListScreen()));
+              },
+              icon: Icon(
+                FontAwesomeIcons.list,
+                color: Color(0xffECEEFB),
+              ),
+            ),
+          ),
+          Positioned(
+            top: 200,
+            child: Container(
+              // padding: EdgeInsets.only(bottom: 100),
+              child: MessageStream(),
+              height: 700,
+              width: MediaQuery.of(context).size.width,
+              // color: Colors.amber,
+              decoration: BoxDecoration(
+                  color: Color(0xffECEEFB),
+                  borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(30),
+                      topRight: Radius.circular(30))),
+            ),
+          ),
+          Positioned(
+            bottom: 0,
+            child: Padding(
+              padding: const EdgeInsets.only(bottom: 35, left: 25, right: 25),
+              child: Container(
+                padding: EdgeInsets.only(left: 15),
+                height: 50,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.all(Radius.circular(20)),
+                  color: Colors.white,
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.grey.withOpacity(0.5),
+                      offset: Offset(0, 0),
+                      spreadRadius: 3,
+                      blurRadius: 7,
+                    )
+                  ],
+                ),
+                child: Row(
+                  // mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Icon(
+                      Icons.attach_file,
+                      color: Colors.grey,
                     ),
-                    decoration: BoxDecoration(
-                        color: Color(0xffECEEFB),
-                        borderRadius: BorderRadius.all(Radius.circular(10))),
-                  ),
-                  Container(
-                    width: 40,
-                    child: TextButton(
-                        onPressed: () {
-                          messageBoxController.clear();
-                          _firestore.collection('messages').add({
-                            "text": messageText,
-                            "sender": loggedInUser.email,
-                            "timestamp":
-                                DateTime.now().toUtc().microsecondsSinceEpoch,
-                          });
+                    Container(
+                      padding: EdgeInsets.symmetric(vertical: 7, horizontal: 7),
+                      // margin: EdgeInsets.symmetric(horizontal: 15, vertical: 5),
+                      margin: EdgeInsets.fromLTRB(15, 5, 7, 5),
+                      width: 250,
+                      child: TextField(
+                        controller: messageBoxController,
+                        decoration: InputDecoration(
+                          border: InputBorder.none,
+                        ),
+                        onChanged: (value) {
+                          messageText = value;
                         },
-                        child: Icon(FontAwesomeIcons.paperPlane)),
-                  )
-                ],
+                      ),
+                      decoration: BoxDecoration(
+                          color: Color(0xffECEEFB),
+                          borderRadius: BorderRadius.all(Radius.circular(10))),
+                    ),
+                    Container(
+                      width: 40,
+                      child: TextButton(
+                          onPressed: () {
+                            messageBoxController.clear();
+                            _firestore.collection('messages').add({
+                              "text": messageText,
+                              "sender": loggedInUser.email,
+                              "timestamp":
+                                  DateTime.now().toUtc().microsecondsSinceEpoch,
+                            });
+                          },
+                          child: Icon(FontAwesomeIcons.paperPlane)),
+                    )
+                  ],
+                ),
               ),
             ),
           ),
@@ -184,12 +235,10 @@ class _MessageStreamState extends State<MessageStream> {
             ));
           }
 
-          return Expanded(
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 15),
-              child: ListView(
-                children: xList,
-              ),
+          return Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 15),
+            child: ListView(
+              children: xList,
             ),
           );
         });
