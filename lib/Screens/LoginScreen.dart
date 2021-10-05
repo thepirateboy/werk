@@ -14,6 +14,7 @@ class _LoginScreenState extends State<LoginScreen> {
   late String email;
   late String password;
   final _auth = FirebaseAuth.instance;
+  bool loadingIndicator = false;
 
   @override
   Widget build(BuildContext context) {
@@ -53,6 +54,10 @@ class _LoginScreenState extends State<LoginScreen> {
                       "lib/img/hugo-security-service.png",
                       height: 250,
                     ),
+                    Visibility(
+                      child: CircularProgressIndicator.adaptive(),
+                      visible: loadingIndicator,
+                    ),
                     LoginTextFieldContainer(
                       theChild: TextField(
                         keyboardType: TextInputType.emailAddress,
@@ -89,16 +94,23 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                     LoginButton(
                       theOnPressed: () async {
+                        setState(() {
+                          loadingIndicator = true;
+                        });
                         try {
-                          final LoggedInUser =
+                          final loggedInUser =
                               await _auth.signInWithEmailAndPassword(
                                   email: email, password: password);
-                          if (LoggedInUser != null) {
+                          if (loggedInUser != null) {
                             Navigator.pushNamed(context, ChatScreen.id);
+                            setState(() {});
                           }
                         } catch (e) {
                           print(e);
                         }
+                        setState(() {
+                          loadingIndicator = false;
+                        });
                       },
                       theText: 'Login',
                     ),

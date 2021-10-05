@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:werk/Screens/ChatScreen.dart';
 
 final _firestore = FirebaseFirestore.instance;
 
@@ -90,8 +91,11 @@ class _ChatListStreamState extends State<ChatListStream> {
         List<ChatListCard> ChatList = [];
 
         for (var x in myChatList) {
-          ChatList.add(
-              ChatListCard(name: x.get("name"), email: x.get("email")));
+          ChatList.add(ChatListCard(
+            name: x.get("name"),
+            email: x.get("email"),
+            thePushTo: ChatScreen.id,
+          ));
         }
 
         for (var x in myChatList) {
@@ -112,37 +116,44 @@ class ChatListCard extends StatelessWidget {
 
   final String name;
   final String email;
+  final String thePushTo;
 
-  ChatListCard({required this.name, required this.email});
+  ChatListCard(
+      {required this.name, required this.email, required this.thePushTo});
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: EdgeInsets.only(bottom: 15),
-      child: Row(
-        children: [
-          SizedBox(
-            width: 20,
-          ),
-          Image(
-            image: AssetImage("lib/img/cat-pp.png"),
-            height: 70,
-          ),
-          SizedBox(
-            width: 10,
-          ),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                name,
-                style: TextStyle(fontSize: 30, fontWeight: FontWeight.w600),
-              ),
-              Text(email),
-            ],
-          ),
-        ],
+    return TextButton(
+      child: Container(
+        margin: EdgeInsets.only(bottom: 10),
+        child: Row(
+          children: [
+            SizedBox(
+              width: 20,
+            ),
+            Image(
+              image: AssetImage("lib/img/cat-pp.png"),
+              height: 70,
+            ),
+            SizedBox(
+              width: 10,
+            ),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  name,
+                  style: TextStyle(fontSize: 30, fontWeight: FontWeight.w600),
+                ),
+                Text(email),
+              ],
+            ),
+          ],
+        ),
       ),
+      onPressed: () {
+        Navigator.pushNamed(context, thePushTo);
+      },
     );
   }
 }
