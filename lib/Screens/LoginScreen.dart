@@ -1,7 +1,12 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:werk/Items/LoginItems.dart';
+import 'package:werk/Screens/ChatListScreen.dart';
 import 'package:werk/Screens/ChatScreen.dart';
+
+final _firestore = FirebaseFirestore.instance;
+late User loggedInUser;
 
 class LoginScreen extends StatefulWidget {
   static final String id = "LoginScreen";
@@ -102,11 +107,18 @@ class _LoginScreenState extends State<LoginScreen> {
                               await _auth.signInWithEmailAndPassword(
                                   email: email, password: password);
                           if (loggedInUser != null) {
-                            Navigator.pushNamed(context, ChatScreen.id);
+                            Navigator.pushNamed(context, ChatListScreen.id);
                             setState(() {});
                           }
                         } catch (e) {
                           print(e);
+                          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                            content: Text(e.toString()),
+                            action: SnackBarAction(
+                              label: "OK",
+                              onPressed: () {},
+                            ),
+                          ));
                         }
                         setState(() {
                           loadingIndicator = false;
