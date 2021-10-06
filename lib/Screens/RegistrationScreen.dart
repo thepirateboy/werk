@@ -105,6 +105,13 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                                   email: email, password: password);
                         } catch (e) {
                           print(e);
+                          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                            content: Text(e.toString()),
+                            action: SnackBarAction(
+                              label: "OK",
+                              onPressed: () {},
+                            ),
+                          ));
                         }
                         setState(() {
                           loadingIndicator = false;

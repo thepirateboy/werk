@@ -1,18 +1,44 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:werk/Screens/ChatScreen.dart';
+import 'package:werk/Screens/PersonalChatCreen.dart';
 
 final _firestore = FirebaseFirestore.instance;
 
 class ChatListScreen extends StatefulWidget {
   // const ChatListScreen({ Key? key }) : super(key: key);
+  static final String id = "ChatListScreen";
 
   @override
   _ChatListScreenState createState() => _ChatListScreenState();
 }
 
 class _ChatListScreenState extends State<ChatListScreen> {
+  static final _auth = FirebaseAuth.instance;
+  late User loggedInUser;
+
+  void getCurrentUSer() {
+    try {
+      final theUser = _auth.currentUser;
+      if (theUser != null) {
+        loggedInUser = theUser;
+        print("Loggedin User = ${loggedInUser.email}");
+      }
+    } catch (e) {
+      print(e);
+    }
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+
+    getCurrentUSer();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -46,7 +72,14 @@ class _ChatListScreenState extends State<ChatListScreen> {
             top: 140,
             right: 7,
             child: TextButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => PersonalChatScreen(
+                              user1: "${loggedInUser.email}",
+                            )));
+              },
               child: Container(
                 padding: EdgeInsets.all(10),
                 decoration: BoxDecoration(
@@ -84,6 +117,10 @@ class _ChatListStreamState extends State<ChatListStream> {
           .collection("rafi@email.com")
           .snapshots(),
       builder: (context, snapshot) {
+        if (!snapshot.hasData) {
+          return Text("loading");
+        }
+
         final myChatList = snapshot.data!.docs;
 
         List<Text> xList = [];
@@ -94,7 +131,7 @@ class _ChatListStreamState extends State<ChatListStream> {
           ChatList.add(ChatListCard(
             name: x.get("name"),
             email: x.get("email"),
-            thePushTo: ChatScreen.id,
+            thePushTo: x.get("email"),
           ));
         }
 
@@ -152,7 +189,13 @@ class ChatListCard extends StatelessWidget {
         ),
       ),
       onPressed: () {
-        Navigator.pushNamed(context, thePushTo);
+        // Navigator.pushNamed(context, thePushTo);
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) => PersonalChatScreen(
+                      user1: thePushTo,
+                    )));
       },
     );
   }
