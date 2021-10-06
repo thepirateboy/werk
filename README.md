@@ -1,16 +1,20 @@
 # werk
 
-A new Flutter project.
+This app is going to be office/company productivity app, that will has bunches of functionalities including department chat, department report form, etc.
 
-## Getting Started
+(Currently, I'm still working on this project).
 
-This project is a starting point for a Flutter application.
+## Techology
+![Flutter](https://img.shields.io/badge/Flutter-%2302569B.svg?style=for-the-badge&logo=Flutter&logoColor=white)
+![Firebase](https://img.shields.io/badge/firebase-%23039BE5.svg?style=for-the-badge&logo=firebase)
+![Dart](https://img.shields.io/badge/dart-%230175C2.svg?style=for-the-badge&logo=dart&logoColor=white)
 
-A few resources to get you started if this is your first Flutter project:
+## Supported Device
+![Android](https://img.shields.io/badge/Android-3DDC84?style=for-the-badge&logo=android&logoColor=white)
+![IOS](https://img.shields.io/badge/iOS-000000?style=for-the-badge&logo=ios&logoColor=white)
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+## Update 
+Added personal chat feature.
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Note
+After this project is pass 50% of the progress, I will make this repository to be private, since I wanted to put it on App Store and Play Store.
