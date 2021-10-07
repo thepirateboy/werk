@@ -160,8 +160,8 @@ class _PersonalChatScreenState extends State<PersonalChatScreen> {
                             _firestore
                               ..collection("UI")
                                   .doc("chat_data")
-                                  .collection("jack@email.com")
-                                  .doc("rafi@email.com")
+                                  .collection("${chatUserS[0]}")
+                                  .doc("${chatUserS[1]}")
                                   .collection("messages")
                                   .add({
                                 "text": messageText,
@@ -203,7 +203,7 @@ class _MessageStreamState extends State<MessageStream> {
             .snapshots(),
         builder: (context, snapshot) {
           if (!snapshot.hasData) {
-            return Text("Still loading :( ");
+            return CircularProgressIndicator.adaptive();
           }
 
           final messages = snapshot.data!.docs;

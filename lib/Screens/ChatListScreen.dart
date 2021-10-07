@@ -6,6 +6,7 @@ import 'package:werk/Screens/ChatScreen.dart';
 import 'package:werk/Screens/PersonalChatCreen.dart';
 
 final _firestore = FirebaseFirestore.instance;
+final _auth = FirebaseAuth.instance;
 
 class ChatListScreen extends StatefulWidget {
   // const ChatListScreen({ Key? key }) : super(key: key);
@@ -108,17 +109,19 @@ class ChatListStream extends StatefulWidget {
 }
 
 class _ChatListStreamState extends State<ChatListStream> {
+  final loggedInUser = _auth.currentUser;
+
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<QuerySnapshot>(
       stream: _firestore
           .collection("UI")
           .doc("chat_list")
-          .collection("rafi@email.com")
+          .collection("${loggedInUser!.email}")
           .snapshots(),
       builder: (context, snapshot) {
         if (!snapshot.hasData) {
-          return Text("loading");
+          return CircularProgressIndicator.adaptive();
         }
 
         final myChatList = snapshot.data!.docs;
